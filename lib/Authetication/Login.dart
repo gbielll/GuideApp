@@ -10,10 +10,11 @@ class Login extends StatefulWidget {
 }
 
 class _LoginState extends State<Login> {
+  bool _obscureText = true; // Para controlar a visibilidade da senha
+
   @override
   Widget build(BuildContext context) {
     final screenWidth = MediaQuery.of(context).size.width;
-    final screenHeight = MediaQuery.of(context).size.height;
     final fontSizetwo = screenWidth * 0.078;
 
     return Scaffold(
@@ -30,6 +31,7 @@ class _LoginState extends State<Login> {
           ),
           Column(
             children: [
+              // Cabeçalho com logo
               Padding(
                 padding: const EdgeInsets.only(right: 20, left: 20, top: 45, bottom: 20),
                 child: Row(
@@ -53,11 +55,12 @@ class _LoginState extends State<Login> {
                   ],
                 ),
               ),
-              SizedBox(height: 80),
+              const SizedBox(height: 80),
+              // Container principal do formulário
               Expanded(
                 child: Container(
                   width: screenWidth,
-                  padding: const EdgeInsets.only(right: 30,left: 30, top:40, bottom: 5),
+                  padding: const EdgeInsets.only(right: 30, left: 30, top: 40, bottom: 5),
                   decoration: BoxDecoration(
                     color: Colors.white,
                     borderRadius: BorderRadius.only(
@@ -70,6 +73,7 @@ class _LoginState extends State<Login> {
                       mainAxisAlignment: MainAxisAlignment.start,
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
+                        // Texto de boas-vindas
                         Container(
                           width: screenWidth,
                           child: RichText(
@@ -108,9 +112,10 @@ class _LoginState extends State<Login> {
                             ),
                           ),
                         ),
-                        const SizedBox(height: 40), // Espaço entre o texto e o campo de entrada
+                        const SizedBox(height: 40), // Espaço entre o texto e os campos de entrada
                         Column(
                           children: [
+                            // Campo de E-mail ou nome de usuário
                             TextField(
                               decoration: InputDecoration(
                                 labelText: 'E-mail ou nome de usuário',
@@ -125,12 +130,23 @@ class _LoginState extends State<Login> {
                               ),
                             ),
                             const SizedBox(height: 20), // Espaço entre os campos
+                            // Campo de senha
                             TextField(
-                              obscureText: true,
+                              obscureText: _obscureText, // Usar o estado para controlar a visibilidade
                               decoration: InputDecoration(
                                 labelText: 'Senha',
                                 labelStyle: TextStyle(color: Colors.grey),
-                                suffixIcon: const Icon(Icons.visibility),
+                                suffixIcon: IconButton(
+                                  icon: Icon(
+                                    _obscureText ? Icons.visibility : Icons.visibility_off, // Ícone que muda conforme a visibilidade
+                                    color: Colors.grey,
+                                  ),
+                                  onPressed: () {
+                                    setState(() {
+                                      _obscureText = !_obscureText; // Alternar o estado
+                                    });
+                                  },
+                                ),
                                 focusedBorder: UnderlineInputBorder(
                                   borderSide: BorderSide(color: Colors.grey, width: 2.0),
                                 ),
@@ -143,7 +159,7 @@ class _LoginState extends State<Login> {
                             Align(
                               alignment: Alignment.centerRight,
                               child: TextButton(
-                                onPressed: () {},
+                                onPressed: () {}, // Ação para o botão "Esqueci senha"
                                 child: const Text('Esqueci senha', style: TextStyle(color: Colors.grey)),
                               ),
                             ),
@@ -154,6 +170,7 @@ class _LoginState extends State<Login> {
                           width: screenWidth,
                           child: Column(
                             children: [
+                              // Botão "Entrar"
                               Container(
                                 width: double.infinity,
                                 child: ElevatedButton(
@@ -183,6 +200,7 @@ class _LoginState extends State<Login> {
                                 ),
                               ),
                               const SizedBox(height: 10), // Espaço entre os botões
+                              // Botão "Voltar"
                               Container(
                                 width: double.infinity,
                                 child: ElevatedButton(
