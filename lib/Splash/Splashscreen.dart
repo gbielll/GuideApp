@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:guide/Options/Languages.dart';
 import 'package:guide/Splash/NavigationOne.dart';
 
 
@@ -15,7 +16,7 @@ class _SplashscreenState extends State<Splashscreen> {
   void initState(){
 
     Future.delayed(const Duration(seconds: 5),(){
-      Navigator.pushReplacement(context, MaterialPageRoute(builder:(context)=>const Navigationone()));
+      Navigator.pushReplacement(context, MaterialPageRoute(builder:(context)=>const Languages()));
     });
     super.initState();
   }
@@ -32,9 +33,9 @@ class _SplashscreenState extends State<Splashscreen> {
           children: <Widget>[
 
             Image.asset(
-              "lib/images/splash.gif", // Caminho do arquivo GIF no diretório assets
-              height: 300, // Altura desejada
-              width: 300, // Largura desejada
+              "lib/images/splashCarrying.gif", // Caminho do arquivo GIF no diretório assets
+              height: 180, // Altura desejada
+              width: 180, // Largura desejada
             ),
             Padding(
               padding: EdgeInsets.only(top: 50), // Espaço entre a imagem e a borda inferior da tela

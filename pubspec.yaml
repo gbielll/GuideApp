@@ -67,6 +67,7 @@ flutter:
     - lib/images/stickdescolando.png
     - lib/images/fundologin.png
     - lib/images/logooriginal.png
+    - lib/images/splashCarrying.gif
   #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see
