@@ -22,7 +22,7 @@ class _LoginState extends State<Login> {
       // Cor de fundo para evitar transições abruptas
       body: Stack(
         children: [
-          // Imagem de fundkok
+          // Imagem de fundkokkk
           Positioned.fill(
             child: Image.asset(
               'lib/images/fundologin.png', // Caminho da imagem
