@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:guide/Authetication/Login.dart';
+import 'package:guide/Authetication/services/form_validator.dart';
 import 'package:guide/Options/OptionsLanguages.dart';
 import 'package:guide/Splash/NavigationThree.dart';
 
@@ -32,6 +33,13 @@ class _CadastreState extends State<Cadastre> {
   String repeatYourPassword = "Repeat your password";
   String btn_back = "Back";
   String enter = "Enter";
+  String enterYourname = "Enter your name";
+
+  //Variáveis para os input
+  final TextEditingController _emailController = TextEditingController();
+  final TextEditingController _nameController = TextEditingController();
+  final TextEditingController _passwordController = TextEditingController();
+  final TextEditingController _repeatPasswordController = TextEditingController();
 
 
   // Função para atualizar os textos
@@ -43,12 +51,25 @@ class _CadastreState extends State<Cadastre> {
       enterYourEmail = _languageReceiver.getEnterYourEmail();
       enterAPassword = _languageReceiver.getEnterAPassword();
       repeatYourPassword = _languageReceiver.getRepeatYourPassword();
-
+      enterYourname = _languageReceiver.getEnterYourName();
       btn_back = _languageReceiver.getBtnBack();
       enter = _languageReceiver.getEnter();
     });
 
   }
+
+  //VALIDAR SE OS CAMPOS FORAM PREENCHIDOS CORRETAMENTES
+  void validateAndShowMessage(BuildContext context) {
+    final formValidator = FormValidator();
+    formValidator.validateAndShowMessage(
+      context,
+      email: _emailController.text,
+      name: _nameController.text,
+      password: _passwordController.text,
+      repeatPassword: _repeatPasswordController.text,
+    );
+  }
+
 
   @override
   Widget build(BuildContext context) {
@@ -155,6 +176,7 @@ class _CadastreState extends State<Cadastre> {
                           children: [
                             // Campo de E-mail ou nome de usuário
                             TextField(
+                              controller: _emailController,
                               decoration: InputDecoration(
                                 labelText: enterYourEmail,
                                 labelStyle: TextStyle(color: Colors.grey),
@@ -167,8 +189,24 @@ class _CadastreState extends State<Cadastre> {
                                 ),
                               ),
                             ),
+                            const SizedBox(height: 20),
+                            TextField(
+                              controller: _nameController,
+                              decoration: InputDecoration(
+                                labelText: enterYourname,
+                                labelStyle: TextStyle(color: Colors.grey),
+                                suffixIcon: const Icon(Icons.person),
+                                focusedBorder: UnderlineInputBorder(
+                                  borderSide: BorderSide(color: Colors.grey, width: 2.0),
+                                ),
+                                enabledBorder: UnderlineInputBorder(
+                                  borderSide: BorderSide(color: Colors.grey, width: 2.0),
+                                ),
+                              ),
+                            ),
                             const SizedBox(height: 20), // Espaço entre os campos
                             TextField(
+                              controller: _passwordController,
                               obscureText: _obscureText, // Usar o estado para controlar a visibilidade
                               decoration: InputDecoration(
                                 labelText: enterAPassword,
@@ -194,6 +232,7 @@ class _CadastreState extends State<Cadastre> {
                             ),
                             const SizedBox(height: 20), // Espaço entre os campos
                             TextField(
+                              controller: _repeatPasswordController,
                               obscureText: _obscureText, // Usar o estado para controlar a visibilidade
                               decoration: InputDecoration(
                                 labelText: repeatYourPassword,
@@ -231,10 +270,7 @@ class _CadastreState extends State<Cadastre> {
                                 width: double.infinity,
                                 child: ElevatedButton(
                                   onPressed: () {
-                                    Navigator.pushReplacement(
-                                      context,
-                                      MaterialPageRoute(builder: (_) => const Login()),
-                                    );
+                                    validateAndShowMessage(context); // Chama a função quando o botão for pressionado
                                   },
                                   style: ElevatedButton.styleFrom(
                                     backgroundColor: const Color(0xFFFFEA29),
@@ -244,7 +280,7 @@ class _CadastreState extends State<Cadastre> {
                                     elevation: 0,
                                     minimumSize: const Size(300, 50),
                                   ),
-                                  child:  Text(
+                                  child: Text(
                                     enter,
                                     style: TextStyle(
                                       fontSize: 15,
@@ -301,3 +337,6 @@ class _CadastreState extends State<Cadastre> {
     );
   }
 }
+
+
+

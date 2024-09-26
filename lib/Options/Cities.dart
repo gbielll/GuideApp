@@ -42,7 +42,7 @@ class _CitiesState extends State<Cities> {
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
         content: Text(info_btn),
-        duration: const Duration(seconds: 2), // Duração da SnackBar
+        duration: const Duration(seconds: 1), // Duração da SnackBar
       ),
     );
   }
@@ -156,3 +156,4 @@ class _CitiesState extends State<Cities> {
     );
   }
 }
+

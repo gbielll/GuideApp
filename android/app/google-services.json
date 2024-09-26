@@ -1,0 +1,30 @@
+{
+  "project_info": {
+    "project_number": "536780966931",
+    "firebase_url": "https://guidemania2024-default-rtdb.firebaseio.com",
+    "project_id": "guidemania2024",
+    "storage_bucket": "guidemania2024.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:536780966931:android:fc94afbf633e4dde9783e6",
+        "android_client_info": {
+          "package_name": "com.fametro.guide"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDE1sSxjMguaMA4DJ5zGXfzEirjpNpTG-U"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

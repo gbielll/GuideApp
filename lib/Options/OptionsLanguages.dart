@@ -33,7 +33,7 @@ class SelectedLanguageReceiver {
   String enterYourEmail = '';
   String enterAPassword = '';
   String repeatYourPassword = '';
-
+  String enterYourname = '';
 
   // Variáveis de instância - tela two
   String op_City = '';
@@ -95,6 +95,7 @@ class SelectedLanguageReceiver {
       enterYourEmail = "Enter your email";
       enterAPassword = "Enter a password";
       repeatYourPassword = "Repeat your password";
+      enterYourname = "Enter your name";
     } else if (this.id == 1) {
       onepage_select_language = "Selecione sua linguagem.";
       op_english = "Inglês";
@@ -134,6 +135,7 @@ class SelectedLanguageReceiver {
       enterYourEmail = "Informe seu email";
       enterAPassword = "Informe uma senha";
       repeatYourPassword = "Repita sua senha";
+      enterYourname = "Informe seu nome";
     } else if (this.id == 2) {
       onepage_select_language = "Selecciona tu idioma.";
       op_english = "Inglés";
@@ -172,6 +174,7 @@ class SelectedLanguageReceiver {
       enterYourEmail = "Introduce tu correo electrónico";
       enterAPassword = "Introduce una contraseña";
       repeatYourPassword = "Repite tu contraseña";
+      enterYourname = "Ingresa tu nombre";
     } else {
       print('ID de idioma inválido.');
     }
@@ -304,6 +307,10 @@ class SelectedLanguageReceiver {
 
   String getRepeatYourPassword() {
     return repeatYourPassword;
+  }
+
+  String getEnterYourName(){
+    return enterYourname;
   }
 
 }
