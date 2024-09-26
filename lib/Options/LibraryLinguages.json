@@ -1,0 +1,23 @@
+{
+  "portuguese": {
+    "onepage_select_language": "Selecione sua linguagem.",
+    "op_english": "Inglês",
+    "op_portuguese": "Português",
+    "op_spanish": "Espanhol",
+    "bt_continue": "Continuar"
+  },
+  "english": {
+    "onepage_select_language": "Select your language.",
+    "op_english": "English",
+    "op_portuguese": "Portuguese",
+    "op_spanish": "Spanish",
+    "bt_continue": "Continue"
+  },
+  "spanish": {
+    "onepage_select_language": "Selecciona tu idioma.",
+    "op_english": "Inglés",
+    "op_portuguese": "Portugués",
+    "op_spanish": "Español",
+    "bt_continue": "Continuar"
+  }
+}

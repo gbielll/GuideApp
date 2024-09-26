@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:guide/Options/OptionsLanguages.dart';
 import 'package:guide/Splash/NavigationOne.dart';
 
 class Cities extends StatefulWidget {
@@ -11,6 +12,25 @@ class Cities extends StatefulWidget {
 
 class _CitiesState extends State<Cities> {
   int _selectedButtonIndex = -1; // Variável para rastrear qual botão está selecionado
+  final SelectedLanguageReceiver _languageReceiver = SelectedLanguageReceiver(); // Instância da classe
+  String op_City = "Available cities"; // Texto inicial
+  String info_btn = "Selected option"; // Texto inicial
+
+  @override
+  void initState() {
+    super.initState();
+    // Atualiza os textos com base no idioma selecionado
+    _languageReceiver.idiom();
+    _updateTexts();
+  }
+
+  // Função para atualizar os textos
+  void _updateTexts() {
+    setState(() {
+      op_City = _languageReceiver.getOp_City(); // Atualiza o texto da cidade
+      info_btn = _languageReceiver.getInfo_btn(); // Atualiza o texto da opção selecionada
+    });
+  }
 
   // Função para definir o índice do botão clicado e mostrar uma mensagem
   void _onButtonPressed(int index, String buttonText) {
@@ -21,7 +41,7 @@ class _CitiesState extends State<Cities> {
     // Exibe uma SnackBar ao selecionar o botão
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
-        content: Text('Você selecionou a cidade "$buttonText"'),
+        content: Text(info_btn),
         duration: const Duration(seconds: 2), // Duração da SnackBar
       ),
     );
@@ -48,7 +68,7 @@ class _CitiesState extends State<Cities> {
                 ),
               ),
               Text(
-                "Cidades disponíveis\nno momento.",
+                op_City,
                 style: TextStyle(
                   color: const Color(0xFF171717),
                   fontSize: fontSizetwo,
@@ -86,8 +106,8 @@ class _CitiesState extends State<Cities> {
                     elevation: 0,
                     minimumSize: const Size(300, 50),
                   ),
-                  child: const Text(
-                    "Continue",
+                  child: Text(
+                    info_btn,
                     style: TextStyle(
                       fontSize: 15,
                       color: Colors.white,

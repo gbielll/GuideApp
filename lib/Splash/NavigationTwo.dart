@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:guide/Options/OptionsLanguages.dart';
 import 'package:guide/Splash/NavigationOne.dart';
 import 'package:guide/Splash/NavigationThree.dart';
 
@@ -11,6 +12,32 @@ class Navigationtwo extends StatefulWidget {
 }
 
 class _NavigationtwoState extends State<Navigationtwo> {
+  late SelectedLanguageReceiver _languageReceiver; // Alterado para 'late' para inicialização posterior.
+
+  @override
+  void initState() {
+    super.initState();
+    _languageReceiver = SelectedLanguageReceiver(); // Inicializa aqui.
+    _languageReceiver.idiom(); // Configura o idioma.
+    _updateTexts(); // Atualiza os textos após a configuração do idioma.
+  }
+
+  // Variáveis para os textos
+  String culturalPoints = "Cultural Points";
+  String guideOffer = "The Guide offers the most visited places for you!";
+  String travelWith = "Travel with";
+  String info_btn = "Selected option";
+
+  // Função para atualizar os textos
+  void _updateTexts() {
+    setState(() {
+      culturalPoints = _languageReceiver.getCulturalPoints();
+      guideOffer = _languageReceiver.getGuideOffer();
+      travelWith = _languageReceiver.getTravelWith();
+      info_btn = _languageReceiver.getInfo_btn();
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
 
@@ -29,8 +56,9 @@ class _NavigationtwoState extends State<Navigationtwo> {
       backgroundColor: const Color(0xFF171717), // Define a cor de fundo da tela
       body: Container(
           child: Padding(
-            padding: EdgeInsets.only(top: 60, bottom: 20, left: 20, right: 20 ),
+            padding: EdgeInsets.only(top: 45, bottom: 20, left: 20, right: 20 ),
             child: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Align(
                   alignment: Alignment.centerRight, // Alinha o Row à direita
@@ -67,9 +95,9 @@ class _NavigationtwoState extends State<Navigationtwo> {
                     color: Color(0xFFFFEA29), // Cor de fundo
                     borderRadius: BorderRadius.circular(10), // Borda arredondada
                   ),
-                  padding: EdgeInsets.only(top: 10, bottom: 25, left: 25, right: 25), // Padding interno
+                  padding: EdgeInsets.only(top: 5, bottom: 5, left: 25, right: 25), // Padding interno
                   child: Column(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
                     crossAxisAlignment: CrossAxisAlignment.start, // Alinha os componentes à esquerda
                     children: [
                       Text(
@@ -82,7 +110,7 @@ class _NavigationtwoState extends State<Navigationtwo> {
                         ),
                       ),
                       Text(
-                        "Pontos Culturais",
+                        culturalPoints,
                         style: TextStyle(
                           color: Color(0xFF171717), // Cor amarela
                           fontSize: fontSizetwo, // Tamanho da fonte
@@ -92,7 +120,7 @@ class _NavigationtwoState extends State<Navigationtwo> {
                       ),
 
                       Text(
-                        "O Guide ofere os lugares mais\nvisitadospara você!",
+                        guideOffer,
                         style: TextStyle(
                           color: Color(0xFF171717), // Cor amarela
                           fontSize: fontSizethree, // Tamanho da fonte
@@ -112,14 +140,14 @@ class _NavigationtwoState extends State<Navigationtwo> {
                     color: Color(0xFF343434), // Cor de fundo
                     borderRadius: BorderRadius.circular(10), // Borda arredondada
                   ),
-                  padding: EdgeInsets.only(top: 40, bottom: 40, left: 25, right: 25), // Padding interno
+                  padding: EdgeInsets.only(top: 10, bottom: 10, left: 25, right: 25), // Padding interno
                   child: Column(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
                     crossAxisAlignment: CrossAxisAlignment.start, // Alinha os componentes à esquerda
                     children: [
 
                       Text(
-                        "Viajem com",
+                        travelWith,
                         style: TextStyle(
                           color: Colors.white, // Cor amarela
                           fontSize: fontSizetwo, // Tamanho da fonte
@@ -209,8 +237,8 @@ class _NavigationtwoState extends State<Navigationtwo> {
                       elevation: 5, // Elevação para a sombra
                       minimumSize: const Size(300, 50),
                     ),
-                    child: const Text(
-                      "Continuar",
+                    child: Text(
+                      info_btn,
                       style: TextStyle(
                         fontSize: 15,
                         color: Colors.white,

@@ -1,16 +1,17 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:guide/Authetication/Login.dart';
 import 'package:guide/Options/OptionsLanguages.dart';
 import 'package:guide/Splash/NavigationThree.dart';
 
-class Login extends StatefulWidget {
-  const Login({super.key});
+class Cadastre extends StatefulWidget {
+  const Cadastre({super.key});
 
   @override
-  State<Login> createState() => _LoginState();
+  State<Cadastre> createState() => _CadastreState();
 }
 
-class _LoginState extends State<Login> {
+class _CadastreState extends State<Cadastre> {
   bool _obscureText = true; // Para controlar a visibilidade da senha
   late SelectedLanguageReceiver _languageReceiver; // Alterado para 'late' para inicialização posterior.
 
@@ -23,13 +24,12 @@ class _LoginState extends State<Login> {
   }
 
   // Variáveis para os textos
-  String weAreHappy = "We are";
-  String happy = "happy";
-  String toHaveYou = "to\n have you\n";
-  String back = "back";
-  String informYourEmail = "Enter your email";
-  String password = "Password";
-  String forgotPassword = "Forgot password";
+  String your = "Your";
+  String trip = "trip";
+  String startsHere = "starts\nhere at";
+  String enterYourEmail = "Enter your email";
+  String enterAPassword = "Enter a password";
+  String repeatYourPassword = "Repeat your password";
   String btn_back = "Back";
   String enter = "Enter";
 
@@ -37,16 +37,17 @@ class _LoginState extends State<Login> {
   // Função para atualizar os textos
   void _updateTexts() {
     setState(() {
-      weAreHappy = _languageReceiver.getWeAreHappy();
-      happy  = _languageReceiver.getHappy();
-      toHaveYou = _languageReceiver.getToHaveYou();
-      back = _languageReceiver.getBack();
-      informYourEmail = _languageReceiver.getInformYourEmail();
-      password = _languageReceiver.getPassword();
-      forgotPassword = _languageReceiver.getForgotPassword();
+      your = _languageReceiver.getYour();
+      trip  = _languageReceiver.getTrip();
+      startsHere = _languageReceiver.getStartsHere();
+      enterYourEmail = _languageReceiver.getEnterYourEmail();
+      enterAPassword = _languageReceiver.getEnterAPassword();
+      repeatYourPassword = _languageReceiver.getRepeatYourPassword();
+
       btn_back = _languageReceiver.getBtnBack();
       enter = _languageReceiver.getEnter();
     });
+
   }
 
   @override
@@ -121,18 +122,18 @@ class _LoginState extends State<Login> {
                                 fontWeight: FontWeight.w600,
                                 color: Colors.black,
                               ),
-                              children:[
-                                TextSpan(text: weAreHappy),
+                              children:  [
+                                TextSpan(text: your),
                                 TextSpan(
-                                  text: happy,
+                                  text: trip,
                                   style: TextStyle(
                                     color: Color(0xFFFFEA29),
                                     fontWeight: FontWeight.w600,
                                   ),
                                 ),
-                                TextSpan(text: toHaveYou),
+                                TextSpan(text: startsHere),
                                 TextSpan(
-                                  text: back,
+                                  text: 'Guide',
                                   style: TextStyle(
                                     color: Color(0xFFFFEA29),
                                     fontWeight: FontWeight.w600,
@@ -155,7 +156,7 @@ class _LoginState extends State<Login> {
                             // Campo de E-mail ou nome de usuário
                             TextField(
                               decoration: InputDecoration(
-                                labelText: informYourEmail,
+                                labelText: enterYourEmail,
                                 labelStyle: TextStyle(color: Colors.grey),
                                 suffixIcon: const Icon(Icons.person),
                                 focusedBorder: UnderlineInputBorder(
@@ -167,11 +168,35 @@ class _LoginState extends State<Login> {
                               ),
                             ),
                             const SizedBox(height: 20), // Espaço entre os campos
-                            // Campo de senha
                             TextField(
                               obscureText: _obscureText, // Usar o estado para controlar a visibilidade
                               decoration: InputDecoration(
-                                labelText: password,
+                                labelText: enterAPassword,
+                                labelStyle: TextStyle(color: Colors.grey),
+                                suffixIcon: IconButton(
+                                  icon: Icon(
+                                    _obscureText ? Icons.visibility : Icons.visibility_off, // Ícone que muda conforme a visibilidade
+                                    color: Colors.grey,
+                                  ),
+                                  onPressed: () {
+                                    setState(() {
+                                      _obscureText = !_obscureText; // Alternar o estado
+                                    });
+                                  },
+                                ),
+                                focusedBorder: UnderlineInputBorder(
+                                  borderSide: BorderSide(color: Colors.grey, width: 2.0),
+                                ),
+                                enabledBorder: UnderlineInputBorder(
+                                  borderSide: BorderSide(color: Colors.grey, width: 2.0),
+                                ),
+                              ),
+                            ),
+                            const SizedBox(height: 20), // Espaço entre os campos
+                            TextField(
+                              obscureText: _obscureText, // Usar o estado para controlar a visibilidade
+                              decoration: InputDecoration(
+                                labelText: repeatYourPassword,
                                 labelStyle: TextStyle(color: Colors.grey),
                                 suffixIcon: IconButton(
                                   icon: Icon(
@@ -193,13 +218,7 @@ class _LoginState extends State<Login> {
                               ),
                             ),
                             const SizedBox(height: 10), // Espaço antes do botão "Esqueci senha"
-                            Align(
-                              alignment: Alignment.centerRight,
-                              child: TextButton(
-                                onPressed: () {}, // Ação para o botão "Esqueci senha"
-                                child:  Text(forgotPassword, style: TextStyle(color: Colors.grey)),
-                              ),
-                            ),
+
                           ],
                         ),
                         const SizedBox(height: 40), // Espaço antes dos botões

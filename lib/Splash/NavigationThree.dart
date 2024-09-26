@@ -1,6 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:guide/Authetication/Login.dart';
+import 'package:guide/Authetication/Cadastre.dart';
+import 'package:guide/Options/OptionsLanguages.dart';
 
 class Navigationthree extends StatefulWidget {
   const Navigationthree({super.key});
@@ -10,6 +12,34 @@ class Navigationthree extends StatefulWidget {
 }
 
 class _NavigationthreeState extends State<Navigationthree> {
+
+  late SelectedLanguageReceiver _languageReceiver; // Alterado para 'late' para inicialização posterior.
+
+  @override
+  void initState() {
+    super.initState();
+    _languageReceiver = SelectedLanguageReceiver(); // Inicializa aqui.
+    _languageReceiver.idiom(); // Configura o idioma.
+    _updateTexts(); // Atualiza os textos após a configuração do idioma.
+  }
+
+  // Variáveis para os textos
+  String tourismAtYourFingertips = "Have tourism\nat the palm of your\n";
+  String hard = "Hard.";
+  String enter = "Enter";
+  String createAccount = "Create account";
+
+
+  // Função para atualizar os textos
+  void _updateTexts() {
+    setState(() {
+      tourismAtYourFingertips = _languageReceiver.getTourismAtYourFingertips();
+      hard  = _languageReceiver.getHard();
+      enter = _languageReceiver.getEnter();
+      createAccount = _languageReceiver.getCreateAccount();
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     // Obtém as dimensões da tela
@@ -81,7 +111,7 @@ class _NavigationthreeState extends State<Navigationthree> {
                     children: [
                       Text.rich(
                         TextSpan(
-                          text: "Tenha o turismo\nna palma\nda",
+                          text: tourismAtYourFingertips,
                           style: TextStyle(
                             color: Colors.white, // Cor para o texto normal
                             fontSize: fontSize, // Tamanho da fonte
@@ -90,7 +120,7 @@ class _NavigationthreeState extends State<Navigationthree> {
                           ),
                           children: <TextSpan>[
                             TextSpan(
-                              text: " Mão.",
+                              text: hard,
                               style: TextStyle(
                                 color: Colors.yellow, // Cor amarela para "Mão."
                               ),
@@ -132,8 +162,8 @@ class _NavigationthreeState extends State<Navigationthree> {
                           elevation: 0, // Remove a sombra
                           minimumSize: const Size(300, 50),
                         ),
-                        child: const Text(
-                          "Entrar",
+                        child:  Text(
+                          enter,
                           style: TextStyle(
                             fontSize: 15,
                             color: Color(0xFF171717),
@@ -146,15 +176,15 @@ class _NavigationthreeState extends State<Navigationthree> {
                         onPressed: () {
                           Navigator.pushReplacement(
                             context,
-                            MaterialPageRoute(builder: (_) => const Navigationthree()),
+                            MaterialPageRoute(builder: (_) => const Cadastre()),
                           );
                         },
                         style: TextButton.styleFrom(
                           backgroundColor: Colors.transparent, // Define o fundo como transparente
                           minimumSize: const Size(300, 50),
                         ),
-                        child: const Text(
-                          "Criar conta",
+                        child: Text(
+                          createAccount,
                           style: TextStyle(
                             fontSize: 15,
                             color: Colors.white, // Define a cor do texto como branco
