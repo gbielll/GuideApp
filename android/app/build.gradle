@@ -6,7 +6,7 @@ plugins {
 }
 
 android {
-    namespace = "com.example.guide"
+    namespace = "com.fametro.guide"
     compileSdk = flutter.compileSdkVersion
     ndkVersion = flutter.ndkVersion
 
